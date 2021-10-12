@@ -20,3 +20,7 @@ enough talks lets get started<br>
 - install visual studio on the windows vm
 - do what the using vs on win does
 - Profit!
+## using mac
+first what do _i_ need to do
+- [ ] use mac
+- [ ] understand mac
