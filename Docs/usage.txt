@@ -22,7 +22,7 @@ a small letter hex address
 YYYYYYYY: XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX
 cap letter hex byte can be 1 byte to 16 bytes
 YYYYYYYY: YY YY YY YY YY YY YY YY YY YY YY YY YY YY YY YY           XXXXXXXXXXXXXXXX
-the contetns min 1 char max 16 chars
+the contents min 1 char max 16 chars
 a new line
 a new 16 byte view
 
@@ -30,7 +30,7 @@ dump it into a file
 
 >> hxt FileA.file > dmpFile.hd
 ""
-words but redirection might fail
+works but redirection might fail
 
 so
 
@@ -53,4 +53,4 @@ change it from FileA.file.hd to somethin else (eg FileA.file.hex.dump)
 00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74           SO COOL..like it
 00000030: 73 2E 2E 2E 2E 20 73 68 75 74 20 75 70                    s.... shut up
 "
-open FileA.file.hex.dump and bam
+open FileA.file.hex.dump aaaaaaaand.... its the same thing.....
