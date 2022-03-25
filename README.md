@@ -1,5 +1,5 @@
 # hxt
-An amazing hex dump program. sucks at filtering illegal chars but doesn't at its main job (dumping hex)
+An amazing hex view program. sucks at filtering illegal chars but doesn't at its main job (ya know fileA (stuff) --> fileB (hex contents of fileA))
 # buildin
 ## using visual studio on windows
 bad at compiling c#????<br>
