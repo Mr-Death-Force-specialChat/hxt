@@ -20,7 +20,7 @@ namespace hxt
             string mfn = fn + ".hd";
             if (fn == "-h")
             {
-                Console.WriteLine("a0 fileName [required]: tell the internal stuff what is the file\na1 mode [optional]: tell the internal stuff to write to a .hd file\na2 modeFile [optional]: where to output the file contetns as hex");
+                Console.WriteLine("a0 fileName [required]: tell the internal stuff what is the file\na1 mode [optional]: tell the internal stuff to write to a .hd file\na2 modeFile [optional]: where to output the file contents as hex");
                 return;
             }
             if (args.Length >= 2)
