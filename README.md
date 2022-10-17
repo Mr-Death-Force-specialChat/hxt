@@ -8,7 +8,8 @@ here are X steps to do it<br>
 - Make a ***new*** visual studio solution (solution for linux later) for a console app<br>
 - Grab that _`Program.cs`_<br> and replace the original _`Program.cs`_ from the vs project<br>
 - vs->build->build
-- Profit!
+- ¿¿¿¿¿
+- ¿Profit?
 ## using linux to build it
 this requires some stuff<br>
 - [x] linux (required to build on ***linux***)
