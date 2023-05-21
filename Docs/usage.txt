@@ -10,10 +10,10 @@ like its.... shut up
 to read the file in hex run
 >> hxt FileA.file
 "
-00000000: 61 20 66 69 6C 65 0D 0A 59 45 53 0D 0A 61 20 66           a file..YES..a f
-00000010: 69 6C 65 0D 0A 49 20 4B 4E 4F 57 20 49 54 53 20           ile..I KNOW ITS
-00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74           SO COOL..like it
-00000030: 73 2E 2E 2E 2E 20 73 68 75 74 20 75 70                    s.... shut up
+00000000: 61 20 66 69 6C 65 0D 0A 59 45 53 0D 0A 61 20 66  a file..YES..a f
+00000010: 69 6C 65 0D 0A 49 20 4B 4E 4F 57 20 49 54 53 20  ile..I KNOW ITS
+00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74  SO COOL..like it
+00000030: 73 2E 2E 2E 2E 20 73 68 75 74 20 75 70           s.... shut up
 "
 
 lets understand the formating a bit
@@ -21,7 +21,7 @@ XXXXXXXX:
 a small letter hex address
 YYYYYYYY: XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX XX
 cap letter hex byte can be 1 byte to 16 bytes
-YYYYYYYY: YY YY YY YY YY YY YY YY YY YY YY YY YY YY YY YY           XXXXXXXXXXXXXXXX
+YYYYYYYY: YY YY YY YY YY YY YY YY YY YY YY YY YY YY YY YY  XXXXXXXXXXXXXXXX
 the contents min 1 char max 16 chars
 a new line
 a new 16 byte view
@@ -30,27 +30,33 @@ dump it into a file
 
 >> hxt FileA.file > dmpFile.hd
 ""
-works but redirection might fail
+works but redirection might fail (it won't fail)
 
 so
 
 >> hxt FileA.file 1
 "
-00000000: 61 20 66 69 6C 65 0D 0A 59 45 53 0D 0A 61 20 66           a file..YES..a f
-00000010: 69 6C 65 0D 0A 49 20 4B 4E 4F 57 20 49 54 53 20           ile..I KNOW ITS
-00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74           SO COOL..like it
-00000030: 73 2E 2E 2E 2E 20 73 68 75 74 20 75 70                    s.... shut up
+00000000: 61 20 66 69 6C 65 0D 0A 59 45 53 0D 0A 61 20 66  a file..YES..a f
+00000010: 69 6C 65 0D 0A 49 20 4B 4E 4F 57 20 49 54 53 20  ile..I KNOW ITS
+00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74  SO COOL..like it
+00000030: 73 2E 2E 2E 2E 20 73 68 75 74 20 75 70           s.... shut up
 "
 
 it still writes it into the console but FileA.file.hd contains it as well
 
-change it from FileA.file.hd to somethin else (eg FileA.file.hex.dump)
+change it from FileA.file.hd to somethin else (eg FileA.file.hex.dump) (Btw the 1 can be a 0 and it won't do anything)
 
 >> hxt FileA.file 1 FileA.file.hex.dump
 "
-00000000: 61 20 66 69 6C 65 0D 0A 59 45 53 0D 0A 61 20 66           a file..YES..a f
-00000010: 69 6C 65 0D 0A 49 20 4B 4E 4F 57 20 49 54 53 20           ile..I KNOW ITS
-00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74           SO COOL..like it
-00000030: 73 2E 2E 2E 2E 20 73 68 75 74 20 75 70                    s.... shut up
+00000000: 61 20 66 69 6C 65 0D 0A 59 45 53 0D 0A 61 20 66  a file..YES..a f
+00000010: 69 6C 65 0D 0A 49 20 4B 4E 4F 57 20 49 54 53 20  ile..I KNOW ITS
+00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74  SO COOL..like it
+00000030: 73 2E 2E 2E 2E 20 73 68 75 74 20 75 70           s.... shut up
 "
 open FileA.file.hex.dump aaaaaaaand.... its the same thing.....
+
+oh also, you can change how many bytes it displays per line.
+
+>> hxt FileA.file 0 Anything 32
+00000000: 61 20 66 69 6C 65 0D 0A 59 45 53 0D 0A 61 20 66 69 6C 65 0D 0A 49 20 4B 4E 4F 57 20 49 54 53 20  a file..YES..a file..I KNOW ITS
+00000020: 53 4F 20 43 4F 4F 4C 0D 0A 6C 69 6B 65 20 69 74 73 2E 2E 2E 2E 20 73 68 75 74 75 70              SO COOL..like its.... shutup
