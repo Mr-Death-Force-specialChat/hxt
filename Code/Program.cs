@@ -18,9 +18,10 @@ namespace hxt
             string fn = args[0];
             bool io = true;
             string mfn = fn + ".hd";
+            int csz = 16;
             if (fn == "-h")
             {
-                Console.WriteLine("a0 fileName [required]: tell the internal stuff what is the file\na1 mode [optional]: tell the internal stuff to write to a .hd file\na2 modeFile [optional]: where to output the file contents as hex");
+                Console.WriteLine("a0 fileName [required]: tell the internal stuff what is the file\na1 mode [optional]: tell the internal stuff to write to a .hd file\na2 modeFile [optional]: where to output the file contents as hex\na3 ChunkSize [optional] default: 16");
                 return;
             }
             if (args.Length >= 2)
@@ -35,10 +36,14 @@ namespace hxt
             {
                 mfn = args[2];
             }
+            if (args.Length >= 4)
+            {
+                csz = int.Parse(args[3]);
+            }
             Program p = new Program();
-            p.main(fn, io, mfn);
+            p.main(fn, io, mfn, csz);
         }
-        void main(string fn, bool io, string mfn)
+        void main(string fn, bool io, string mfn, int csz)
         {
             long offset = 0;
             string masterOut = "";
@@ -53,7 +58,7 @@ namespace hxt
                     byte[] chunk = new byte[0];
                     try
                     {
-                        chunk = br.ReadBytes(16);
+                        chunk = br.ReadBytes(csz);
                     }
                     catch (Exception)
                     {
@@ -124,13 +129,21 @@ namespace hxt
                     bats = bats.Replace(31.ToString(), ".");
                     bats = bats.Replace(172.ToString(), ".");
                     bats = bats.Replace(0x070D0A.ToString(), ".");
-                    text = add(text);
-                    text += bats;
+                    string ibats = "";
+					foreach (char c in bats)
+					{
+                        if (isPrint(c) && c >= 0x20 && c <= 0x7E)
+                            ibats += c;
+                        else
+                            ibats += ".";
+					}
+                    text = add(text, csz);
+                    text += ibats;
                     string output = LongToString(offset) + ": ";
                     output += text;
                     masterOut += output + "\n";
                     Console.WriteLine(output);
-                    offset+=16;
+                    offset += csz;
                 }
                 bw.Write(masterOut);
                 bw.Flush();
@@ -148,7 +161,7 @@ namespace hxt
                     byte[] chunk = new byte[0];
                     try
                     {
-                        chunk = br.ReadBytes(16);
+                        chunk = br.ReadBytes(csz);
                     }
                     catch (Exception)
                     {
@@ -219,12 +232,20 @@ namespace hxt
                     bats = bats.Replace(31.ToString(), ".");
                     bats = bats.Replace(172.ToString(), ".");
                     bats = bats.Replace(0x070D0A.ToString(), ".");
-                    text = add(text);
-                    text += bats;
+                    string ibats = "";
+                    foreach (char c in bats)
+                    {
+                        if (isPrint(c))
+                            ibats += c;
+                        else
+                            ibats += ".";
+                    }
+                    text = add(text, csz);
+                    text += ibats;
                     string output = LongToString(offset) + ": ";
                     output += text;
                     Console.WriteLine(output);
-                    offset += 16;
+                    offset += csz;
                 }
                 br.Close();
                 br.Dispose();
@@ -275,11 +296,10 @@ namespace hxt
             }
             return false;
         }
-        string add(string v)
+        string add(string v, int csz)
         {
             string r = v;
-            string w = "                                                          ";
-            while (r.Length < w.Length)
+            while (r.Length < (csz * 3) + 1)
             {
                 r += " ";
             }
